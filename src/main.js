@@ -41,11 +41,10 @@ Vue.use(VueRouter);
 // 如果想要中文版 element-ui，按如下方式声明
 // Vue.use(ElementUI)
 const appStore = new AppStore(Vue);
-
-console.log(AppComponents)
 appStore.addConstant('API_CONF', apiConfig)
   .addService('sysService', SysApi)
   .addGlobalComponent('list', AppComponents.ListView)
+  .addGlobalComponent('detail', AppComponents.DetailView)
   .defaultMainLayout()
   .defaultHeaderView()
   .defaultNavView()

@@ -6,19 +6,19 @@
                     <el-col :span="20">
                         <el-row :gutter="10">
                             <template v-for="(item, index) in store.filter">
-                                <Input
+                                <FilterInput
                                         v-if="item.type === 'input'"
                                         :store="store"
                                         :rowConfig="item"
                                         v-model="store.filterValues[item.key]"
                                 />
-                                <DatePicker
+                                <FilterDataPiker
                                         v-else-if="item.type === 'data-picker'"
                                         :store="store"
                                         :rowConfig="item"
                                         v-model="store.filterValues[item.key]"
                                 />
-                                <Select
+                                <FilterSelect
                                         v-else-if="item.type === 'select'"
                                         :store="store"
                                         :rowConfig="item"
@@ -174,9 +174,9 @@
             }
         },
         components:{
-            'Input': FilterComponent.Input,
-            'DatePicker': FilterComponent.DataPiker,
-            'Select': FilterComponent.Select,
+            'FilterInput': FilterComponent.FilterInput,
+            'FilterDataPiker': FilterComponent.FilterDataPiker,
+            'FilterSelect': FilterComponent.FilterSelect,
             'Actions': ActionsComponent.Actions,
             'RowActions': ActionsComponent.RowActions,
             'Pagination': Pagination,
