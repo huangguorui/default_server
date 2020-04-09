@@ -103,7 +103,12 @@
             <el-table-column :prop="store.primaryKey" label="操作">
               <template slot-scope="scope">
                   <RowActions :rowData="scope.row" :rowActions="rowActions" :store="store">
-
+                      <template
+                          v-for="{slotName} in slotRowActions"
+                          #[slotName]="scope"
+                      >
+                          <slot :name="slotName" :props="scope.props" :rowData="scope.rowData" :store="scope.store"></slot>
+                      </template>
                   </RowActions>
               </template>
             </el-table-column>
@@ -125,7 +130,10 @@
         computed:{
           slotActions(){
               return this.actions.filter(item=>item.slotName)
-          }
+          },
+            slotRowActions(){
+                return this.rowActions.filter(item=>item.slotName)
+            }
         },
         props:{
           columns:{
