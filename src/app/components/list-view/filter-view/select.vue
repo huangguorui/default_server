@@ -7,10 +7,10 @@
                     clearable
             >
                 <el-option
-                        v-for="item in dataSource"
-                        :key="item.id"
-                        :label="item.name"
-                        :value="item.id"/>
+                        v-for="(item, index) in dataSource"
+                        :key="index"
+                        :label="labelKeyIsFunc ? labelKey(item) : item[labelKey]"
+                        :value="valueKeyIsFunc ? valueKey(item) : item[valueKey]"/>
             </el-select>
         </el-form-item>
 
@@ -21,10 +21,10 @@
                 clearable
         >
             <el-option
-                    v-for="item in dataSource"
-                    :key="item.id"
-                    :label="item.name"
-                    :value="item.id"/>
+                v-for="(item, index) in dataSource"
+                :key="index"
+                :label="labelKeyIsFunc ? labelKey(item) : item[labelKey]"
+                :value="valueKeyIsFunc ? valueKey(item) : item[valueKey]"/>
         </el-select>
     </el-col>
 </template>
@@ -34,23 +34,30 @@
         name: 'zns-filter-select',
         props:['rowConfig', 'store', 'value'],
         data(){
-            return {
+            const {
+                valueKey = 'id'
+                , labelKey
+            } = this.rowConfig;
 
+            return {
+                dataSource:[],
+                valueKeyIsFunc: valueKey instanceof Function,
+                labelKeyIsFunc: labelKey instanceof Function,
+                valueKey: valueKey || 'id',
+                labelKey: labelKey || 'name',
+            }
+        },
+        mounted(){
+            if(this.rowConfig.dataSource instanceof Function){
+                this.rowConfig.dataSource().then(result=>{
+                    this.dataSource = result;
+                })
+            } else {
+                this.dataSource = this.rowConfig.dataSource;
             }
         },
         computed:{
-            dataSource(){
-                return [
-                    {
-                        id:1,
-                        name:'zzz'
-                    },
-                    {
-                        id:2,
-                        name: 'sss'
-                    }
-                ]
-            }
+
         },
         methods:{
             handelChange(value){

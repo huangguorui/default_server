@@ -34,11 +34,28 @@ export const data = [
 ];
 export const filter = [
   {
+      title:'姓名',
     key:'name',
-    title:'姓名'
+      span:4,
   },
   {
+      title:'年龄',
     key:'age',
-    title:'年龄'
-  }
+      span:4,
+  },
+    {
+        title:'用户',
+        key:'user',
+        type:'select',
+        span:4,
+        dataSource:()=>Promise.resolve([
+            {
+                name:'zj',
+                id:1
+            }, {
+                name:'gr',
+                id:2
+            }
+        ])
+    }
 ];
