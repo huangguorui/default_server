@@ -1,0 +1,44 @@
+export const columns = [
+  {
+    key:'options.b',
+    title:'ID',
+  slotName:'wwww',
+  },
+  {
+    key:'name',
+    title:'姓名',
+    sortable:true
+  },
+  {
+    key:'age',
+    title:'年龄'
+  }
+];
+export const data = [
+  {
+    id:1,
+    name:'zns',
+    age:1,
+    options:{
+      b:'bbb'
+    },
+  },
+  {
+    id:2,
+    name:'zzns',
+    age:2,
+    options:{
+      b:'ccc'
+    }
+  }
+];
+export const filter = [
+  {
+    key:'name',
+    title:'姓名'
+  },
+  {
+    key:'age',
+    title:'年龄'
+  }
+];
