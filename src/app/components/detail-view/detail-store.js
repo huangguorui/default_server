@@ -48,19 +48,27 @@ class DetailStore extends Events {
     * */
     _stateKeyPush(items, state = {}){
         if(items instanceof Array){
-            for (let {key, value = ''} of items){
-                state[key] = value;
-            }
-        } else{
-            for (let [key, item] of Object.entries(items)){
-                const {addKey = false} = item;
-                if(addKey){
-                    state[addKey] = Object.create({});
-                    item.currentState = state[addKey];
+            for (let item of items){
+                let {key, value = ''} = item;
+                const {createState = false} = item;
+                if(typeof createState === 'string'){
+                    state[createState] = Object.create({});
+                    item.currentState = state[createState];
                 } else{
                     item.currentState = state;
                 }
-                this._stateKeyPush(item.items, addKey ? state[addKey] : state)
+                item.currentState[key] = value;
+            }
+        } else{
+            for (let [key, item] of Object.entries(items)){
+                const {createState = false} = item;
+                if(typeof createState === 'string'){
+                    state[createState] = Object.create({});
+                    item.currentState = state[createState];
+                } else {
+                    item.currentState = state;
+                }
+                this._stateKeyPush(item.items, item.currentState)
             }
         }
         return state;

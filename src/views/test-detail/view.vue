@@ -15,7 +15,7 @@
         data(){
             return {
                 store:new DetailStore({
-                    items: itemsArr
+                    items
                 })
             }
         }

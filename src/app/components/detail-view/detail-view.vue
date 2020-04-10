@@ -22,7 +22,8 @@
                             v-if="item.slotName"
                             :name="item.slotName"
                             :store="store"
-                            :itemConfig="items"
+                            :itemConfig="item"
+                            :currentState="(item.currentState || valueC.currentState)"
                             :itemObjectKey="itemObjectKey"
                         />
 
@@ -30,9 +31,9 @@
                             v-else-if="item.type === 'input' || !item.type"
                             :store="store"
                             :itemConfig="item"
-                            v-model="valueC.currentState[item.key]"
+                            v-model="(item.currentState || valueC.currentState)[item.key]"
                             :itemObjectKey="itemObjectKey"
-                            :currentState="valueC.currentState"
+                            :currentState="(item.currentState || valueC.currentState)"
                             :key="i + index"
                         />
 
@@ -40,9 +41,9 @@
                             v-else-if="item.type === 'select'"
                             :store="store"
                             :itemConfig="item"
-                            v-model="valueC.currentState[item.key]"
+                            v-model="(item.currentState || valueC.currentState)[item.key]"
                             :itemObjectKey="itemObjectKey"
-                            :currentState="valueC.currentState"
+                            :currentState="(item.currentState || valueC.currentState)"
                             :key="i + index"
                         />
                     </el-form-item>

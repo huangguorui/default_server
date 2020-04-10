@@ -2,7 +2,8 @@ const itemTest = [
     {
         key:'name',
         type:'input',
-        title:'姓名'
+        title:'姓名',
+        createState:'user',
     },
     {
         key:'sssss',
@@ -32,7 +33,7 @@ const itemTest = [
 export const items = {
     test:{
         title:'测试TILE',
-        addKey:'testKey',
+        createState:'testKey',
         items:itemTest
     },
     aaa: {
