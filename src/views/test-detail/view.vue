@@ -8,14 +8,14 @@
 
 <script>
     import {DetailStore} from 'app-components'
-    import {items} from "./config";
+    import {items, itemsArr} from "./config";
 
     export default {
         name: "view",
         data(){
             return {
                 store:new DetailStore({
-                    items
+                    items: itemsArr
                 })
             }
         }

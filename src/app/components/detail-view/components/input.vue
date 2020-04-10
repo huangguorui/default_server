@@ -16,8 +16,6 @@
                 this.itemConfig.change
                     ? this.itemConfig.change(value, changeOptionsC(this))
                     : this.$emit('input', value && value.trimStart())
-                console.log(this.store)
-                console.log(this.currentState)
             }
         }
     }

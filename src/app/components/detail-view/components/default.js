@@ -7,11 +7,14 @@ export const baseProps = {
     currentState: Object,
     itemObjectKey: String,
 };
-
+/*基础 changeOptions*/
 export const changeOptionsC = (store)=>({
     store: store.store,
     value: store.value,
     itemConfig: store.itemConfig,
     currentState: store.currentState,
-    itemObjectKey: store.itemObjectKey
-})
+    itemObjectKey: store.itemObjectKey,
+    change(value){
+        store.$emit('input', value)
+    }
+});

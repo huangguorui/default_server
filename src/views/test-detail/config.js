@@ -1,36 +1,49 @@
-export const items = {
-    test:{
-        title:'sssss',
-        addKey:'test',
-        items:[
+const itemTest = [
+    {
+        key:'name',
+        type:'input',
+        title:'姓名'
+    },
+    {
+        key:'sssss',
+        type: 'select',
+        title:'等级',
+        dataSource:[
             {
-                key:'name',
-                type:'input',
-                title:'姓名'
+                id:1,
+                name:'A'
             },
             {
-                key:'sssss',
-                type: 'select',
-                dataSource:[
-                    {
-                        id:1,
-                        name:'A'
-                    },
-                    {
-                        id:2,
-                        name:'B'
-                    },
-                    {
-                        id:3,
-                        name:'C'
-                    }
-                ],
-                /*change(value, options){
-                    options.currentState[options.itemConfig.key] = value;
-                    console.log(value)
-                    console.log(options)
-                }*/
+                id:2,
+                name:'B'
+            },
+            {
+                id:3,
+                name:'C'
+            }
+        ],
+        change(value, options){
+            options.change(value)
+            console.log(value)
+            console.log(options)
+        }
+    }
+];
+export const items = {
+    test:{
+        title:'测试TILE',
+        addKey:'testKey',
+        items:itemTest
+    },
+    aaa: {
+        title:'title2',
+        items: [
+            {
+                key:'age',
+                title:'年纪'
             }
         ]
     }
-}
+};
+
+export const itemsArr = itemTest;
