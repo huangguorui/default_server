@@ -1,9 +1,9 @@
 import Events from 'events'
 
-class DetailStore extends Events{
-
-    data = {};
-    items = [];
+class DetailStore extends Events {
+    state;
+    items;
+    itemObject;
     ready = false;
     /**
      * 构造函数
@@ -21,27 +21,58 @@ class DetailStore extends Events{
         const {
             items = []
         } = this.props;
+
+        this.state = this._stateKeyPush(items);
         this.items = items;
 
-        const data = Object.create({});
-        for (let item of items){
-            data[items.key] = items.value || '';
+
+        if(this.items instanceof Array){
+            this.itemObject = {
+                default:{
+                    hideTitle: true,
+                    currentState: this.state,
+                    items: this.items
+                }
+            }
+        } else {
+            this.itemObject =  this.items;
         }
 
-        this.data = data;
+        console.log(this)
 
         this.ready = true;
     }
-
-
-    keyValue(key){
-        return new Function(`
-         try {
-            return ${this.data}.${key}
-        } catch (e) {
-            console.error(e)
-            return null;
-        }`)
+    /*
+    *
+    * 给data push key
+    * */
+    _stateKeyPush(items, state = {}){
+        if(items instanceof Array){
+            for (let {key, value = ''} of items){
+                state[key] = value;
+            }
+        } else{
+            for (let [key, item] of Object.entries(items)){
+                const {addKey = false} = item;
+                if(addKey){
+                    state[addKey] = Object.create({});
+                    item.currentState = state[addKey];
+                } else{
+                    item.currentState = state;
+                }
+                this._stateKeyPush(item.items, addKey ? state[addKey] : state)
+            }
+        }
+        return state;
     }
+
+
+    getStateKey(state, ...keys){
+        let value = state;
+        for(let key of keys.filter(c => c)){
+            value = value[key]
+        }
+        return value;
+    };
 }
 export default DetailStore;

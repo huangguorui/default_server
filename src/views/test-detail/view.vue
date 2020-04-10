@@ -1,5 +1,6 @@
 <template>
     <global-detail-view
+        v-if="store.ready"
         :store="store"
         :items="store.items"
     />
@@ -7,18 +8,14 @@
 
 <script>
     import {DetailStore} from 'app-components'
+    import {items} from "./config";
+
     export default {
         name: "view",
         data(){
             return {
                 store:new DetailStore({
-                    items:[
-                        {
-                            key:'name',
-                            type:'input',
-                            title:'姓名'
-                        }
-                    ]
+                    items
                 })
             }
         }

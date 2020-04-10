@@ -48,6 +48,7 @@ export const filter = [
         key:'user',
         type:'select',
         span:4,
+        valueKey:(item)=>item.id,
         dataSource:()=>Promise.resolve([
             {
                 name:'zj',

@@ -67,7 +67,7 @@
                     value: this.value
                 };
                 this.rowConfig.change
-                    ? this.rowConfig.change(value, this, option)
+                    ? this.rowConfig.change(value, option)
                     : this.$emit('input', value && value)
             }
         }

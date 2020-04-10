@@ -7,24 +7,17 @@
 </template>
 
 <script>
+    import {baseProps, changeOptionsC} from './default'
     export default {
         name: "zns-detail-input",
-        props:{
-            store: Object,
-            value: [String, Number, Array, Object, Boolean],
-            itemConfig: Object,
-        },
+        props: Object.assign({}, baseProps),
         methods:{
-
             handelChange(value){
-                let option = {
-                    rowConfig: this.rowConfig,
-                    store: this.store,
-                    value: this.value
-                };
-                this.rowConfig.change
-                    ? this.rowConfig.change(value, this, option)
+                this.itemConfig.change
+                    ? this.itemConfig.change(value, changeOptionsC(this))
                     : this.$emit('input', value && value.trimStart())
+                console.log(this.store)
+                console.log(this.currentState)
             }
         }
     }
