@@ -52,9 +52,9 @@ class DetailStore extends Events {
                 let {key, value = ''} = item;
                 const {createState = false} = item;
                 if(typeof createState === 'string'){
-                    state[createState] = Object.create({});
+                    state[createState] = state[createState] || Object.create({});
                     item.currentState = state[createState];
-                } else{
+                } else {
                     item.currentState = state;
                 }
                 item.currentState[key] = value;
@@ -63,7 +63,7 @@ class DetailStore extends Events {
             for (let [key, item] of Object.entries(items)){
                 const {createState = false} = item;
                 if(typeof createState === 'string'){
-                    state[createState] = Object.create({});
+                    state[createState] = state[createState] || Object.create({});
                     item.currentState = state[createState];
                 } else {
                     item.currentState = state;

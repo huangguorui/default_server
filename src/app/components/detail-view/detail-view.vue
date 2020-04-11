@@ -12,7 +12,7 @@
                     :key="i + index"
                 >
                     <el-form-item
-                        :prop="getProp(valueC.addKey, item.key)"
+                        :prop="getProp((item.createState || valueC.createState), item.key)"
                         :label="item.title"
                         :required="items.required"
                         :rules="items.rules"

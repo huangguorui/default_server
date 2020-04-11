@@ -6,6 +6,12 @@ const itemTest = [
         createState:'user',
     },
     {
+        key:'height',
+        type:'input',
+        title:'身高',
+        createState:'user',
+    },
+    {
         key:'sssss',
         type: 'select',
         title:'等级',
